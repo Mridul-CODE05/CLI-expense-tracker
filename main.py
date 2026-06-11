@@ -1,7 +1,7 @@
 expenses: list[dict[str, str, float]] = []  # This will hold the list of expenses
 expense: dict[str, str, float] = {} # This will hold the details of a single expense
 
-def print_status():
+def print_menu(): # Prints the menu at the start
     print("===== Expense Tracker =====")
     print()
     print("Please select an option:")
@@ -12,7 +12,7 @@ def print_status():
     print("5. Exit")
     print()
 
-def add_expense(currency):
+def add_expense(currency): # Adds the inputted expense into a list
     name: str = input("Enter expense name: ")
     amount = float(input(f"Enter expense amount: {currency}"))
     expense = {"name": name, "currency": currency, "amount": amount}
@@ -22,7 +22,7 @@ def add_expense(currency):
     else:
         print("Failed to add expense. Please try again.")
 
-def show_expense():
+def show_expense(): # Prints the currently added expenses
     if not expenses:
             print("No expenses to show.")
     else:
@@ -30,7 +30,7 @@ def show_expense():
         for i, expense in enumerate(expenses, start=1):
             print(f"{i}. {expense["name"]} - {expense["currency"]}{expense["amount"]}")
 
-def delete_expense():
+def delete_expense(): # Deletes the expenses according to the user's input
     if not expenses:
         print("No expenses to delete.")
     else:
@@ -47,7 +47,7 @@ def delete_expense():
         else:
             print("Failed to delete Expense. Please try again.")
 
-def total_spending(currency):
+def total_spending(currency): # Prints the total amount
     total = 0
     for a in expenses:
         total += a["amount"]
@@ -58,8 +58,8 @@ def total_spending(currency):
     else:
         print("No expenses to total.")
 
-while True:
-    print_status()
+while True: # Runs infinetly until exited by the user
+    print_menu()
     currency: str = "₹"
     choice = int(input("Enter your choice: "))
     print()
