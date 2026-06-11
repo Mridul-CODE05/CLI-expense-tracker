@@ -39,14 +39,28 @@ while True:
             print("No expenses to delete.")
         else:
             print("Expenses:")
+            print("0. Back")
             for i, expense in enumerate(expenses, start=1):
                 print(f"{i}. {expense["name"]} - {expense["currency"]}{expense["amount"]}")
             delete_it = int(input("Which Expense do you want to delete: ")) - 1
             if 0 <= delete_it and delete_it <= len(expenses)-1:
                 deleted_item = expenses.pop(delete_it)
                 print(f"Expense '{deleted_item["name"]}' of amount {deleted_item["currency"]}{deleted_item["amount"]} deleted successfully!")
+            elif delete_it == 0:
+                break
             else:
                 print("Failed to delete Expense. Please try again.")
+    
+    elif choice == 4:
+        total = 0
+        for a in expenses:
+            total += a["amount"]
+        if a["amount"] != 0:
+            print("Calculating Total Spending: ")
+            print(f"Successfully calculated Total Spending!")
+            print(f"--> {currency}{total}")
+        else:
+            print("No expenses to total.")
 
     elif choice == 5:
         print("Exiting the Expense Tracker. Goodbye!")
