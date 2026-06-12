@@ -21,6 +21,7 @@ def add_expense(currency): # Adds the inputted expense into a list
         print(f"Expense '{name}' of amount {currency}{amount} added successfully!")
     else:
         print("Failed to add expense. Please try again.")
+    input("\nPress Enter to return to the menu...")
 
 def show_expense(): # Prints the currently added expenses
     if not expenses:
@@ -29,6 +30,7 @@ def show_expense(): # Prints the currently added expenses
         print("Expenses:")
         for i, expense in enumerate(expenses, start=1):
             print(f"{i}. {expense["name"]} - {expense["currency"]}{expense["amount"]}")
+    input("\nPress Enter to return to the menu...")
 
 def delete_expense(): # Deletes the expenses according to the user's input
     if not expenses:
@@ -41,24 +43,27 @@ def delete_expense(): # Deletes the expenses according to the user's input
         delete_it = int(input("Which Expense do you want to delete: ")) - 1
         if 0 <= delete_it and delete_it <= len(expenses)-1:
             deleted_item = expenses.pop(delete_it)
+            print()
             print(f"Expense '{deleted_item["name"]}' of amount {deleted_item["currency"]}{deleted_item["amount"]} deleted successfully!")
         elif delete_it == 0:
             return
         else:
             print("Failed to delete Expense. Please try again.")
+    input("\nPress Enter to return to the menu...")
 
 def total_spending(currency): # Prints the total amount
-    total = 0
+    total = 0.0
     for a in expenses:
         total += a["amount"]
-    if a["amount"] != 0:
+    if expenses:
         print("Calculating Total Spending: ")
         print(f"Successfully calculated Total Spending!")
         print(f"--> {currency}{total}")
     else:
         print("No expenses to total.")
+    input("\nPress Enter to return to the menu...")
 
-while True: # Runs infinetly until exited by the user
+while True: # Runs infinitely until exited by the user
     print_menu()
     currency: str = "₹"
     choice = int(input("Enter your choice: "))
