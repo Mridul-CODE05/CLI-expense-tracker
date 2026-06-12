@@ -1,5 +1,18 @@
-expenses: list[dict[str, str, float]] = []  # This will hold the list of expenses
-expense: dict[str, str, float] = {} # This will hold the details of a single expense
+import json
+expenses = []  # This will hold the list of expenses
+expense = {} # This will hold the details of a single expense
+
+def save_data():
+    with open("expenses.json", "w") as file:
+        json.dump(expenses, file, indent=4)
+
+def load_data():
+    try:
+        with open("expenses.json", "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+     
 
 def print_menu(): # Prints the menu at the start
     print("===== Expense Tracker =====")
@@ -25,7 +38,7 @@ def add_expense(currency): # Adds the inputted expense into a list
         print("please enter a valid amount!")
         input("\n↳ ")
         return
-    expense = {"name": name, "currency": currency, "amount": amount}
+    expense = {"name": name, "amount": amount}
     expenses.append(expense)
     if expenses:
         print(f"Expense '{name}' of amount {currency}{amount} added successfully!")
@@ -33,23 +46,23 @@ def add_expense(currency): # Adds the inputted expense into a list
         print("Failed to add expense. Please try again.")
     input("\n↳ ")
 
-def show_expense(): # Prints the currently added expenses
+def show_expense(currency): # Prints the currently added expenses
     if not expenses:
             print("No expenses to show.")
     else:
         print("Expenses:")
         for i, expense in enumerate(expenses, start=1):
-            print(f"{i}. {expense["name"]} - {expense["currency"]}{expense["amount"]}")
+            print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
     input("\n↳ ")
 
-def delete_expense(): # Deletes the expenses according to the user's input
+def delete_expense(currency): # Deletes the expenses according to the user's input
     if not expenses:
         print("No expenses to delete.")
     else:
         print("Expenses:")
         print("0. Back")
         for i, expense in enumerate(expenses, start=1):
-            print(f"{i}. {expense["name"]} - {expense["currency"]}{expense["amount"]}")
+            print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
         delete_it = (input("Which Expense do you want to delete: "))
         if delete_it.isdigit() == False:
             print("Please enter a valid integer!")
@@ -59,7 +72,7 @@ def delete_expense(): # Deletes the expenses according to the user's input
         if 0 <= delete_it and delete_it <= len(expenses)-1:
             deleted_item = expenses.pop(delete_it)
             print()
-            print(f"Expense '{deleted_item["name"]}' of amount {deleted_item["currency"]}{deleted_item["amount"]} deleted successfully!")
+            print(f"Expense '{deleted_item["name"]}' of amount {currency}{deleted_item["amount"]} deleted successfully!")
         elif delete_it == 0:
             return
         else:
@@ -78,6 +91,8 @@ def total_spending(currency): # Prints the total amount
         print("No expenses to total.")
     input("\n↳ ")
 
+expenses = load_data()
+
 while True: # Runs infinitely until exited by the user
     print_menu()
     currency: str = "₹"
@@ -92,10 +107,10 @@ while True: # Runs infinitely until exited by the user
         add_expense(currency)
 
     elif choice == '2':
-        show_expense()
+        show_expense(currency)
     
     elif choice == '3':
-        delete_expense()
+        delete_expense(currency)
     
     elif choice == '4':
         total_spending(currency)
@@ -109,3 +124,5 @@ while True: # Runs infinitely until exited by the user
         print("Please enter a valid menu number!")
         input("\n↳ ")
         continue
+
+    save_data()
