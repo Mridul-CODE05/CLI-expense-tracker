@@ -19,18 +19,29 @@ A command-line expense tracker built as a Personal learning project to explore P
 Python 3.14+
 ```
 ## 📦 Installation
-
-### 1. Clone the repository
+### Via Terminal(Recommended):
+#### 1. Clone the repository
 ```bash
 git clone https://github.com/Mridul-CODE05/CLI-expense-tracker
 ```
-
-### 2. Navigate into the project directory
+#### 2. Check python version
+```bash
+python3 --version
+```
+If version is 3.14+ then proceed to the next step, else update your python version please!
+#### 3. Navigate into the project directory
 ```bash
 cd CLI-expense-tracker
 ```
-
-
+### Via zip installation(Alternate):
+1. Click the green Code button on the repository page
+2. Select Download ZIP
+3. Extract the ZIP file on your system
+4. Open the extracted folder in terminal / command prompt
+Then run:
+```bash
+python3 main.py
+```
 ## 🚀Usage/Examples
 
 Run the program
