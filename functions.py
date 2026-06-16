@@ -1,8 +1,5 @@
 import json
 
-expenses = []  # This will hold the list of expenses with categories
-expense = {} # This will hold the details of a single expense
-
 def save_data():
     with open("expenses.json", "w") as file:
         json.dump(expenses, file, indent=4)
@@ -39,7 +36,6 @@ def add_expense(currency): # Adds the inputted expense into a list
         input("\n↳ ")
         return
     expense = {"name": name, "amount": amount}
-    expenses.append(expense)
     if expenses:
         print(f"Expense '{name}' of amount {currency}{amount} added successfully!")
     else:
@@ -50,10 +46,9 @@ def add_expense(currency): # Adds the inputted expense into a list
     if cate_ques == "y":
         category = input("Enter category name: ")
         category_lower = category.lower()
-        expense = {"category": category_lower}
-        if category_lower not in expense:
-            expenses.append(category_lower)
+        expense["category"] = category
         print(f"{name} is added to Category '{category}'")
+    expenses.append(expense)
     input("\n↳ ")
     
 
@@ -63,6 +58,9 @@ def show_expense(currency): # Prints the currently added expenses
     else:
         print("Expenses:")
         for i, expense in enumerate(expenses, start=1):
+            category = expense.get("category")
+            if category:
+                print(f"{i}. {expense["category"]}: {expense["name"]} - {currency}{expense["amount"]}")
             print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
     input("\n↳ ")
 
