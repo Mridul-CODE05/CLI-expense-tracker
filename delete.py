@@ -6,8 +6,8 @@ def delete_expense(currency): # Deletes the expenses according to the user's inp
     else:
         print("Expenses:")
         print("0. Back")
-        for i, expense in enumerate(expenses, start=1):
-            print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
+        for i, exp_ense in enumerate(expenses, start=1):
+            print(f"{i}. {exp_ense["name"]} - {currency}{exp_ense["amount"]}")
         delete_it = (input("Which Expense do you want to delete: "))
         if delete_it.isdigit() == False:
             print("Please enter a valid integer!")
@@ -23,3 +23,9 @@ def delete_expense(currency): # Deletes the expenses according to the user's inp
         else:
             print("Failed to delete Expense. Please try again.")
     input("\n↳ ")
+
+# def delete_category():
+#     for expe_nses in expenses:
+#         if not expe_nses["category"]:
+#             print("No category to delete.")
+#         else:
