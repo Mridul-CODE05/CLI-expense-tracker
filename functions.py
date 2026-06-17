@@ -1,6 +1,8 @@
 import json
+
 expenses = []
 expense = {}
+
 def save_data():
     with open("expenses.json", "w") as file:
         json.dump(expenses, file, indent=4)
@@ -54,54 +56,5 @@ def add_expense(currency): # Adds the inputted expense into a list
     expenses.append(expense)
     input("\n↳ ")
     
-
-def show_expense(currency): # Prints the currently added expenses
-    if not expenses:
-            print("No expenses to show.")
-    else:
-        print("Expenses:")
-        for i, expense in enumerate(expenses, start=1):
-            category = expense.get("category")
-            if category:
-                print(f"{i}. {expense["category"]}: {expense["name"]} - {currency}{expense["amount"]}")
-            else:    
-                print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
-    input("\n↳ ")
-
-def delete_expense(currency): # Deletes the expenses according to the user's input
-    if not expenses:
-        print("No expenses to delete.")
-    else:
-        print("Expenses:")
-        print("0. Back")
-        for i, expense in enumerate(expenses, start=1):
-            print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
-        delete_it = (input("Which Expense do you want to delete: "))
-        if delete_it.isdigit() == False:
-            print("Please enter a valid integer!")
-            input("\n↳ ")
-            return
-        delete_it = int(delete_it) - 1
-        if 0 <= delete_it and delete_it <= len(expenses)-1:
-            deleted_item = expenses.pop(delete_it)
-            print()
-            print(f"Expense '{deleted_item["name"]}' of amount {currency}{deleted_item["amount"]} deleted successfully!")
-        elif delete_it == 0:
-            return
-        else:
-            print("Failed to delete Expense. Please try again.")
-    input("\n↳ ")
-
-def total_spending(currency): # Prints the total amount
-    total = 0.0
-    for a in expenses:
-        total += a["amount"]
-    if expenses:
-        print("Calculating Total Spending: ")
-        print(f"Successfully calculated Total Spending!")
-        print(f"--> {currency}{total}")
-    else:
-        print("No expenses to total.")
-    input("\n↳ ")
 
 expenses = load_data()

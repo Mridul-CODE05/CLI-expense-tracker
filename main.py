@@ -1,4 +1,7 @@
 from functions import *
+from delete import *
+from show import *
+from total import *
 
 while True: # Runs infinitely until exited by the user
     print_menu()
@@ -20,7 +23,7 @@ while True: # Runs infinitely until exited by the user
     elif choice == '3':
         delete_expense(currency)
         save_data()
-    
+
     elif choice == '4':
         total_spending(currency)
 
