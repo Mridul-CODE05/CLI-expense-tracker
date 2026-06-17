@@ -32,8 +32,13 @@ def show():
     if choice.isdigit() == False:
         print("Please enter a valid integer!")
         input("\n↳ ")
+        return
     else:
         if choice == '1':
             show_expense(currency='₹')
         elif choice == '2':
             show_category()
+        else:
+            print("Please enter a valid integer!")
+            input("\n↳ ")
+            return
