@@ -1,5 +1,6 @@
 import json
-
+expenses = []
+expense = {}
 def save_data():
     with open("expenses.json", "w") as file:
         json.dump(expenses, file, indent=4)
@@ -15,10 +16,10 @@ def print_menu(): # Prints the menu at the start
     print("===== Expense Tracker =====")
     print()
     print("Please select an option:")
-    print("1. Add Expense")
-    print("2. View Expenses")
-    print("3. Delete Expense")
-    print("4. Total Spending")
+    print("1. Add")
+    print("2. View")
+    print("3. Delete")
+    print("4. Total")
     print("5. Exit")
     print()
 
@@ -35,7 +36,9 @@ def add_expense(currency): # Adds the inputted expense into a list
         print("please enter a valid amount!")
         input("\n↳ ")
         return
-    expense = {"name": name, "amount": amount}
+    # expense = {"name": name, "amount": amount}
+    expense["name"] = name
+    expense["amount"] = amount
     if expenses:
         print(f"Expense '{name}' of amount {currency}{amount} added successfully!")
     else:
@@ -61,7 +64,8 @@ def show_expense(currency): # Prints the currently added expenses
             category = expense.get("category")
             if category:
                 print(f"{i}. {expense["category"]}: {expense["name"]} - {currency}{expense["amount"]}")
-            print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
+            else:    
+                print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
     input("\n↳ ")
 
 def delete_expense(currency): # Deletes the expenses according to the user's input
