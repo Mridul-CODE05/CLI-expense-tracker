@@ -8,7 +8,7 @@ def show_expense(currency): # Prints the currently added expenses
         for i, expense in enumerate(expenses, start=1):
             category = expense.get("category")
             if category:
-                print(f"{i}. {expense["category"]}: {expense["name"]} - {currency}{expense["amount"]}")
+                print(f"{i}. [{expense["category"]}]: {expense["name"]} - {currency}{expense["amount"]}")
             else:    
                 print(f"{i}. {expense["name"]} - {currency}{expense["amount"]}")
     input("\n↳ ")
@@ -17,10 +17,9 @@ def show_category():
     for i, expen in enumerate(expenses, start=1):
         category = expen.get("category")
         if not category:
-            print("No categories to show.")
+            print(f"{i}. Has no category")
         else:
-            print("All Categories: ")
-            print(f"{i}. {expen["category"]}" )
+            print(f"{i}. [{expen["category"]}]" )
     input("\n↳ ")
 
 def show():

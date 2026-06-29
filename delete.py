@@ -45,9 +45,31 @@ def delete_category():
                 return
             delete = int(delete) - 1
             if 0 <= delete and delete <= len(category) - 1:
-                deleted_category = category.pop(delete)
+                deleted_category = {}
+                deleted_category_str = expenses.pop(expense[delete])
+                deleted_category["category"] = deleted_category_str
                 print()
                 print(f"Category '{deleted_category["category"]}' deleted successfully!")
             else:
-                print("Failed to delete Category. Please try again.")
+                print("Failed to delete Category.")
     input("\n↳ ")
+
+def delete():
+        print("1. Expense")
+        print("2. Category")
+        print()
+        choice = input("Enter your choice: ")
+        print()
+        if choice.isdigit() == False:
+            print("Please enter a valid integer!")
+            input("\n↳ ")
+            return
+        else:
+            if choice == '1':
+                delete_expense(currency='₹')
+            elif choice == '2':
+                delete_category()
+            else:
+                print("Please enter a valid integer!")
+                input("\n↳ ")
+                return

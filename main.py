@@ -21,7 +21,7 @@ while True: # Runs infinitely until exited by the user
         show()
     
     elif choice == '3':
-        delete_expense(currency)
+        delete()
         save_data()
 
     elif choice == '4':

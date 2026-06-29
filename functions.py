@@ -32,6 +32,7 @@ def add_expense(currency): # Adds the inputted expense into a list
         input("\n↳ ")
         return
     amount = None
+    category = ""
     try:
         amount = float(input(f"Enter expense amount: {currency}"))
     except ValueError:
@@ -41,6 +42,7 @@ def add_expense(currency): # Adds the inputted expense into a list
     # expense = {"name": name, "amount": amount}
     expense["name"] = name
     expense["amount"] = amount
+    expense["category"] = category
     if expenses:
         print(f"Expense '{name}' of amount {currency}{amount} added successfully!")
     else:
